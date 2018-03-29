@@ -5,19 +5,25 @@ import { HttpClient } from '@angular/common/http';
 export class BlackbeltService {
 
   constructor(private _http: HttpClient) { }
-  grabpets(){
-    return this._http.get('/pet');
+  graball(){
+    return this._http.get('/movie');
   }
   grabme(id){
-    return this._http.get('/pet/'+id);
+    return this._http.get('/movie/'+id);
   }
-  addpet(data){
-    return this._http.post('/pet', data);
+  addmovie(data){
+    return this._http.post('/movie', data);
   }
   destroyme(id){
-    return this._http.delete('/pet/delete/'+id)
+    return this._http.delete('/movie/delete/'+id)
   }
   addlike(id){
-    return this._http.get('/pet/add/'+id)
+    return this._http.get('/movie/add/'+id)
+  }
+  destroyreview(id,data){
+    return this._http.post('/movie/delete/review/'+id, {thing:data} );
+  }
+  addreview(id,data){
+    return this._http.post('/movie/review/'+id, data)
   }
 }

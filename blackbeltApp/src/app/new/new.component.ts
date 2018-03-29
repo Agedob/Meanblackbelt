@@ -8,14 +8,13 @@ import { BlackbeltService } from '../blackbelt.service';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-  newpet = {
+  newmovie = {
     name: "",
-    type: "",
+    yourname: '',
+    stars:1,
     desc: "",
-    skill1: "",
-    skill2: "",
-    skill3: "",
   }
+  exsist;
   exs = [];
   constructor(private _route: ActivatedRoute,private _router: Router, private _httpService: BlackbeltService) { }
 
@@ -23,29 +22,27 @@ export class NewComponent implements OnInit {
 
   }
   onsubmit(){
-    let i = this._httpService.addpet(this.newpet);
+    let i = this._httpService.addmovie(this.newmovie);
     i.subscribe(data => {
       this.exs = []
-      console.log(data)
+      this.exsist = ''
       if(data['message']=="Exsist"){
-        this.exs.push(data['data'])
+        this.exsist = "Already exsists"
       }else{
         if(data['data']['errors']){
           this.exs.push(data['data']['errors'])
         }
         if(this.exs.length < 1){
-          this._router.navigate(['/Dashboard'])
+          this._router.navigate(['/'])
           console.log(data) //success so no errors
           }
         }
     })
-    this.newpet = {
+    this.newmovie = {
       name: "",
-      type: "",
+      yourname: '',
+      stars:1,
       desc: "",
-      skill1: "",
-      skill2: "",
-      skill3: "",
     }
   }
 

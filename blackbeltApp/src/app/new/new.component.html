@@ -1,59 +1,44 @@
-<h2>Know of a pet needing a home?</h2>
+<h2>Submit a movie and your review</h2>
 <p *ngFor="let x of exs" style="color:purple;">
-    {{x.exsists}}<br>
-    {{x.petname.message}}<br>
-    {{x.description.message}}<br>
-    {{x.pettype.message}}</p>
+    {{x['review.0.desc'].message}}<br>{{x['review.0.name'].message}}<br>
+</p>
+<p *ngIf="exsist" style="color:purple;">{{exsist}}</p>
+
 <form (submit)="onsubmit()">
-    <p>pet name:</p>
+    <p>Movie Title:</p>
     <input type="text" name="name"
-    [(ngModel)]="newpet['name']" 
+    [(ngModel)]="newmovie['name']" 
     placeholder="Name must be 3 long" 
     required 
     minlength=3
-    #name="ngModel"> {{ newpet['name'] | json }}
+    #name="ngModel"> <div *ngIf="name.invalid">{{name.errors | json }}</div>
 
-    <p>pet type:</p>
-    <input type="text" name="type"
-    [(ngModel)]="newpet['type']" 
+    <p>Your name:</p>
+    <input type="text" name="yourname"
+    [(ngModel)]="newmovie['yourname']" 
     placeholder="Type must be 3 long" 
     required 
     minlength=3
-    #type="ngModel"> {{ newpet['type'] | json }}
+    #yourname="ngModel"> <div *ngIf="yourname.invalid">{{yourname.errors | json }}</div>
 
     <p>desc:</p>
     <input type="text" name="desc"
-    [(ngModel)]="newpet['desc']" 
+    [(ngModel)]="newmovie['desc']" 
     placeholder="desc must be 3 long" 
     required 
     minlength=3
-    #desc="ngModel"> {{ newpet['desc'] | json }}
+    #desc="ngModel"> <div *ngIf="desc.invalid">{{desc.errors | json }}</div>
     
-    <h4 *ngIf="desc.valid">Skills:</h4>
-    <p *ngIf="desc.valid">skill 1: 
-    <input type="text" name="skill3"
-    [(ngModel)]="newpet['skill3']" 
-    placeholder="Skillz must be 3 long" 
-    required 
-    minlength=3
-    #skill3="ngModel"> {{ newpet['skill1'] | json }}</p>
+    <p> Stars :
+    <select name="stars" [(ngModel)]="newmovie['stars']">
+        <option value="1">1 star</option>
+        <option value="2">2 star</option>
+        <option value="3">3 star</option>
+        <option value="4">4 star</option>
+        <option value="5">5 star</option>
+    </select> {{ newmovie['stars'] | json }}</p>
 
-    <p *ngIf="desc.valid">skill 3: 
-    <input type="text" name="skill1"
-    [(ngModel)]="newpet['skill1']" 
-    placeholder="Skillz must be 3 long" 
-    required 
-    minlength=3
-    #skill1="ngModel"> {{ newpet['skill2'] | json }}</p>
-
-    <p *ngIf="desc.valid">skill 2: 
-    <input type="text" name="skill2"
-    [(ngModel)]="newpet['skill2']" 
-    placeholder="Skillz must be 3 long" 
-    required 
-    minlength=3
-    #skill2="ngModel"> {{ newpet['skill3'] | json }}</p>
     <br>
-    <input type="submit">
+    <div *ngIf="name.valid"><div *ngIf="yourname.valid"><input type="submit" *ngIf="desc.valid"></div></div>
     <button [routerLink]="['/']">Cancel</button>
 </form>

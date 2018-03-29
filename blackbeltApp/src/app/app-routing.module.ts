@@ -9,11 +9,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 const routes: Routes = [
-  {path: 'Dashboard', component: AlphaComponent },
-  {path: 'make_a_new', component: NewComponent},
-  {path: 'detail/:id', component: SingleComponent},
-  // { path: 'edit/:id', component: EditComponent},
-  {path: '', pathMatch: 'full', redirectTo: "/Dashboard" },
+  {path: 'movies', component: AlphaComponent },
+  {path: 'movies/new', component: NewComponent},
+  {path: 'movies/:id', component: SingleComponent},
+  {path: 'movies/review/:id', component: EditComponent},
+  {path: '', pathMatch: 'full', redirectTo: "/movies" },
   {path: '**', component: PagenotfoundComponent}
 ];
 

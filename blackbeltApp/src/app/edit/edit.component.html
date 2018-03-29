@@ -1,0 +1,34 @@
+<h2>Add a review for {{me.name}}</h2>
+<p *ngFor="let x of exs" style="color:purple;">
+        {{x['review.0.desc'].message}}<br>{{x['review.0.name'].message}}</p>
+    <form (submit)="onsubmit()">
+
+        <p>Your name:</p>
+        <input type="text" name="yourname"
+        [(ngModel)]="newmovie['yourname']" 
+        placeholder="Type must be 3 long" 
+        required 
+        minlength=3
+        #yourname="ngModel"> {{ newmovie['yourname'] | json }}
+    
+        <p>desc:</p>
+        <input type="text" name="desc"
+        [(ngModel)]="newmovie['desc']" 
+        placeholder="desc must be 3 long" 
+        required 
+        minlength=3
+        #desc="ngModel"> {{ newmovie['desc'] | json }}
+        
+        <p> Stars :
+        <select name="stars" [(ngModel)]="newmovie['stars']">
+            <option value="1">1 star</option>
+            <option value="2">2 star</option>
+            <option value="3">3 star</option>
+            <option value="4">4 star</option>
+            <option value="5">5 star</option>
+        </select> {{ newmovie['stars'] | json }}</p>
+    
+        <br>
+        <input type="submit" *ngIf="desc.valid">
+        <button [routerLink]="['/']">Cancel</button>
+    </form>

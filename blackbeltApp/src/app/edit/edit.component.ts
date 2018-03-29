@@ -11,7 +11,12 @@ import { BlackbeltService } from '../blackbelt.service';
 export class EditComponent implements OnInit {
 id;
 me;
-list;
+newmovie = {
+  yourname: '',
+  stars:1,
+  desc: ""
+}
+exs = [];
   constructor(private _route: ActivatedRoute,private _router: Router, private _httpService: BlackbeltService) { }
   
   ngOnInit() {
@@ -26,7 +31,27 @@ list;
     obs.subscribe(data => {
       console.log(data);
       this.me = data
-      this.list = this.me['skill']
     })
   }
+  onsubmit(){
+    let i = this._httpService.addreview(this.id,this.newmovie);
+    i.subscribe(data => {
+      this.exs = []
+      console.log(data)
+        if(data['data']['errors']){
+          this.exs.push(data['data']['errors'])
+          console.log(this.exs)
+        }
+        if(this.exs.length < 1){
+          this._router.navigate(['/'])
+          console.log(data) //success so no errors
+          }
+    })
+    this.newmovie = {
+      yourname: '',
+      stars:1,
+      desc: "",
+    }
+  }
+
 }

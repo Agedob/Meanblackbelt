@@ -1,19 +1,17 @@
-<h2>these pets are looking for a home!</h2>
-<a [routerLink]="['/make_a_new']">Add a pet to the shelter</a>
+<h2>Movie List <button [routerLink]="['/movies/new']">Add a new movie</button></h2>
 <table>
   <tr>
     <th>Name</th>
-    <th>Type</th> 
     <th>Action Avalable</th>
+    <th>Average stars</th>
   </tr>
-  <tr *ngFor= "let x of list" id="{{x['id']}}">
-      <td><p>{{x['petname']}}</p></td>
-      <td>{{x['pettype']}}</td>
+  <tr *ngFor= "let x of list" id="{{x['_id']}}">
+      <td>{{x.name}}</td>
       <td>
-          <button [routerLink]="['/detail/' + x['_id']]">Details</button>
-          <button [routerLink]="['/edit/' + x['_id']]">Edit</button> 
-        <button (click)="destroy(x['_id'])">Delete</button>
+          <button [routerLink]="['/movies/' + x['_id']]">Details</button>
+          <button [routerLink]="['/movies/review/' + x['_id']]">Write a Review</button> 
       </td>
+      <td>{{x.av}}</td>
     </tr>
 </table>
 <app-edit></app-edit>

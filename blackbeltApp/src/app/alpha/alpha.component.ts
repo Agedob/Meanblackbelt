@@ -14,18 +14,20 @@ export class AlphaComponent implements OnInit {
     this.fetch()
   }
   fetch(){
-    let i = this._httpService.grabpets();
+    let i = this._httpService.graball();
     i.subscribe(data => {
       console.log(data);
-      this.list = data['data'];
+      // this.list = data['data'];X
+      for(let datas of data['data']){
+        var av = 0, num = 0;
+        for(let i = 0; i < datas.review.length;i++){
+          av += Number(datas.review[i].star);
+        }
+          num = Math.trunc(av/datas.review.length)
+        this.list.push({name:datas.name, av:num,_id:datas._id})
+      }
+      console.log(this.list)
     })
-  }
-    destroy(id){
-    let i = this._httpService.destroyme(id);
-    i.subscribe(data => {
-      console.log(data);
-    })
-    this.fetch()
   }
 
 }

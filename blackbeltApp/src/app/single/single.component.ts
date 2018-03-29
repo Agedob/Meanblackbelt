@@ -26,22 +26,32 @@ hide = "me"
     obs.subscribe(data => {
       console.log(data);
       this.me = data
-      this.list = this.me['skill']
+      this.list = this.me['review']
+      console.log(this.list)
+      this.list.sort(function(a,b){return b.star - a.star})
     })
   }
   destroy(){
     let i = this._httpService.destroyme(this.id);
     i.subscribe(data => {
       console.log(data);
-      this._router.navigate(['/Dashboard'])
+      this._router.navigate(['/'])
     })
   }
-  inc(){
-    let i = this._httpService.addlike(this.id);
+  destroyme(idz){
+    let i = this._httpService.destroyreview(this.id, idz);
     i.subscribe(data => {
-      console.log(data);
+      console.log(data)
       this.search()
-      this.hide = "hide"
     })
   }
+
+  // inc(){
+  //   let i = this._httpService.addlike(this.id);
+  //   i.subscribe(data => {
+  //     console.log(data);
+  //     this.search()
+  //     this.hide = "hide"
+  //   })
+  // }
 }

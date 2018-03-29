@@ -1,7 +1,14 @@
-<h2>Details about {{me.petname}}</h2><a [routerLink]="['/']">Home</a>
-<p><span>Pet Type:</span>{{me.pettype}}</p>
-<p><span>Description:</span>{{me.description}}</p>
-<p *ngFor="let ski of list"><span>Skills:</span><br>{{ski.skill3}}<br>{{ski.skill2}}<br>{{ski.skill1}}</p>
-<p><span>Likes:</span>{{me.likes}}</p>
-<button (click)="inc()">Like this pet</button> 
-<button (click)="destroy()" class="{{hide}}">Adopt this pet!</button>
+<h2>Details about {{me.name}}</h2><a [routerLink]="['/']">Home</a>
+<button (click)="destroy()" style="background:red; color:white;">DELETE THIS MOVIE!</button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>stars</th>
+        <th>Reviews</th>
+    </tr>
+    <tr *ngFor= "let x of list" id="{{x['_id']}}">
+        <td><p>{{x['name']}}</p></td>
+        <td>{{x.star}}</td>
+        <td>{{x.desc}} <button (click)="destroyme(x['_id'])">Delete Review</button></td>
+        </tr>
+</table>
