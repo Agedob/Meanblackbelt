@@ -1,0 +1,7 @@
+<h2>Details about {{me.petname}}</h2><a [routerLink]="['/']">Home</a>
+<p><span>Pet Type:</span>{{me.pettype}}</p>
+<p><span>Description:</span>{{me.description}}</p>
+<p *ngFor="let ski of list"><span>Skills:</span><br>{{ski.skill3}}<br>{{ski.skill2}}<br>{{ski.skill1}}</p>
+<p><span>Likes:</span>{{me.likes}}</p>
+<button (click)="inc()">Like this pet</button> 
+<button (click)="destroy()" class="{{hide}}">Adopt this pet!</button>

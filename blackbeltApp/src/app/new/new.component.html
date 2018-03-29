@@ -1,0 +1,59 @@
+<h2>Know of a pet needing a home?</h2>
+<p *ngFor="let x of exs" style="color:purple;">
+    {{x.exsists}}<br>
+    {{x.petname.message}}<br>
+    {{x.description.message}}<br>
+    {{x.pettype.message}}</p>
+<form (submit)="onsubmit()">
+    <p>pet name:</p>
+    <input type="text" name="name"
+    [(ngModel)]="newpet['name']" 
+    placeholder="Name must be 3 long" 
+    required 
+    minlength=3
+    #name="ngModel"> {{ newpet['name'] | json }}
+
+    <p>pet type:</p>
+    <input type="text" name="type"
+    [(ngModel)]="newpet['type']" 
+    placeholder="Type must be 3 long" 
+    required 
+    minlength=3
+    #type="ngModel"> {{ newpet['type'] | json }}
+
+    <p>desc:</p>
+    <input type="text" name="desc"
+    [(ngModel)]="newpet['desc']" 
+    placeholder="desc must be 3 long" 
+    required 
+    minlength=3
+    #desc="ngModel"> {{ newpet['desc'] | json }}
+    
+    <h4 *ngIf="desc.valid">Skills:</h4>
+    <p *ngIf="desc.valid">skill 1: 
+    <input type="text" name="skill3"
+    [(ngModel)]="newpet['skill3']" 
+    placeholder="Skillz must be 3 long" 
+    required 
+    minlength=3
+    #skill3="ngModel"> {{ newpet['skill1'] | json }}</p>
+
+    <p *ngIf="desc.valid">skill 3: 
+    <input type="text" name="skill1"
+    [(ngModel)]="newpet['skill1']" 
+    placeholder="Skillz must be 3 long" 
+    required 
+    minlength=3
+    #skill1="ngModel"> {{ newpet['skill2'] | json }}</p>
+
+    <p *ngIf="desc.valid">skill 2: 
+    <input type="text" name="skill2"
+    [(ngModel)]="newpet['skill2']" 
+    placeholder="Skillz must be 3 long" 
+    required 
+    minlength=3
+    #skill2="ngModel"> {{ newpet['skill3'] | json }}</p>
+    <br>
+    <input type="submit">
+    <button [routerLink]="['/']">Cancel</button>
+</form>
